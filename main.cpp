@@ -50,6 +50,8 @@ void renderScene(void) {
 	Cube cube2(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(0.0f, 45.0f, 0.0f), 1.5f);
 	cube2.draw();
 
+	//ae giup toi
+
 
 	// End of drawing ---------------------------------------------------
 
