@@ -71,13 +71,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\phamt\OneDrive\Desktop\opengl_3d\School_3D\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\phamt\OneDrive\Desktop\opengl_3d\School_3D\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>

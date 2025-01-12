@@ -65,6 +65,6 @@ void Cube::draw(void)
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 	glEnd();
 
-
+	// linh tinh
 	glPopMatrix();
 }
