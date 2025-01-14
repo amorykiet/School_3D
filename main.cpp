@@ -55,11 +55,14 @@ void renderScene(void) {
 	Pymirad pymirad(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	pymirad.draw();*/
 
-	Flagpole flagpole(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
-	flagpole.draw();
+	/*Flagpole flagpole(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	flagpole.draw();*/
 
-	Roof roof(glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	Roof roof(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	roof.draw();
+
+	/*Flagpole flagpole(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	flagpole.draw();*/
 
 	
 

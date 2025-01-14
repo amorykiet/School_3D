@@ -14,6 +14,8 @@ class Roof {
 public:
 	Roof(glm::vec3 position, glm::vec3 rotation = glm::vec3(0.0f, 0.0f, 0.0f), float size = 1.0f);
 	void draw(void);
+	void drawCylinder(void);
+	void drawBaseRoof(void);
 
 private:
 	glm::vec3 position;

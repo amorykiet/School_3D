@@ -40,24 +40,4 @@ void Flagpole::draw(void) {
     glEnd();
     glPopMatrix();
 
-    //glPushMatrix();
-    //glTranslatef(0.0f, 5.0f, 0.0f);
-
-    /*glBegin(GL_QUADS);
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
-            float x = i * 0.15f - 0.75f;
-            float z = j * 0.15f - 0.75f;
-            float wave = 0.1f * sinf(2.0f * M_PI * (x + 0.01f));
-
-            glVertex3f(x, wave, z);
-            glVertex3f(x + 0.15f, wave, z);
-            glVertex3f(x + 0.15f, wave, z + 0.15f);
-            glVertex3f(x, wave, z + 0.15f);
-        }
-    }
-    glEnd();
-
-    glPopMatrix();*/
-
 }
