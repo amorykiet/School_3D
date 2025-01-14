@@ -30,6 +30,12 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontFace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -39,6 +45,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontFace.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

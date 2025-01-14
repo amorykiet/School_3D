@@ -70,18 +70,18 @@ void renderScene(void) {
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 	// Draw a textured quad
-	glBegin(GL_QUADS);
+	/*glBegin(GL_QUADS);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 0.0f);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 0.0f);
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 0.0f);
 	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 0.0f);
-	glEnd();
+	glEnd();*/
 
 	glDisable(GL_TEXTURE_2D);
 	
-	/*SampleBuilding building(glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	SampleBuilding building(glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
 
-	building.draw();*/
+	building.draw();
 
 
 	// End of drawing ---------------------------------------------------
