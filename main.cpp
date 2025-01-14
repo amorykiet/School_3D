@@ -10,6 +10,9 @@
 #include<glm/gtx/vector_angle.hpp>
 
 #include"Cube.h"
+#include"Pymirad.h"
+#include"Roof.h"
+#include"Flagpole.h"
 
 
 
@@ -44,13 +47,20 @@ void renderScene(void) {
 	//Draw thing -------------------------------------------------------
 	
 	// Draw a Cube
-	Cube cube(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	/*Cube cube(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	cube.draw();
 
 	Cube cube2(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(0.0f, 45.0f, 0.0f), 1.5f);
 	cube2.draw();
+	Pymirad pymirad(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	pymirad.draw();*/
 
-	//ae giup toi
+	Flagpole flagpole(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	flagpole.draw();
+
+	
+
+	
 
 
 	// End of drawing ---------------------------------------------------

@@ -71,13 +71,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\School_3D\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\School_3D\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
@@ -144,10 +144,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Flagpole.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pymirad.cpp" />
+    <ClCompile Include="Roof.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Flagpole.h" />
+    <ClInclude Include="Pymirad.h" />
+    <ClInclude Include="Roof.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

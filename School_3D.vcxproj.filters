@@ -21,9 +21,27 @@
     <ClCompile Include="Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pymirad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Roof.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flagpole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pymirad.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Roof.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flagpole.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
