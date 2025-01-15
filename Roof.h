@@ -16,6 +16,7 @@ public:
 	void draw(void);
 	void drawCylinder(void);
 	void drawBaseRoof(void);
+	
 
 private:
 	glm::vec3 position;

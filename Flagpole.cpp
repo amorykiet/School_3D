@@ -28,6 +28,13 @@ void Flagpole::draw(void) {
 
     // Draw the rectangular flag on top
     glPushMatrix();
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+    glScalef(size, size, size);
+
+    glPushMatrix();
     glTranslatef(-0.75f, -0.5f, 0.0f);
     glBegin(GL_QUADS);
 

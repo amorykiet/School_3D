@@ -12,30 +12,59 @@ Roof::Roof(glm::vec3 position, glm::vec3 rotation, float size)
 }
 
 void Roof::drawCylinder(void) {
+
     GLUquadric* quad = gluNewQuadric();
 
-    // Cylinder 1
+    // Cylinder 1 top left
+    glPushMatrix();
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+    glScalef(size, size, size);
+
     glPushMatrix();
     glTranslatef(-1.0f, 0.0f, -0.5f);
     glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
     gluCylinder(quad, 0.1f, 0.1f, 1.0f, 32, 32);
     glPopMatrix();
 
-    // Cylinder 2
+    // Cylinder 2 top right
+    glPushMatrix();
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+    glScalef(size, size, size);
+
     glPushMatrix();
     glTranslatef(1.0f, 0.0f, -0.5f);
     glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
     gluCylinder(quad, 0.1f, 0.1f, 1.0f, 32, 32);
     glPopMatrix();
 
-    // Cylinder 3
+    // Cylinder 3 left bottom
+    glPushMatrix();
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+    glScalef(size, size, size);
+
     glPushMatrix();
     glTranslatef(-1.0f, 0.0f, 0.5f);
     glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
     gluCylinder(quad, 0.1f, 0.1f, 1.0f, 32, 32);
     glPopMatrix();
 
-    // Cylinder 4
+    // Cylinder 4 right bottom
+    glPushMatrix();
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+    glScalef(size, size, size);
+
     glPushMatrix();
     glTranslatef(1.0f, 0.0f, 0.5f);
     glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
@@ -45,6 +74,13 @@ void Roof::drawCylinder(void) {
 }
 
 void Roof::drawBaseRoof(void) {
+    glPushMatrix();
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+    glScalef(size, size, size);
+
     glPushMatrix();
     glTranslatef(0.0f, 0.0f, 0.0f);
     glBegin(GL_QUADS);
@@ -91,12 +127,12 @@ void Roof::drawBaseRoof(void) {
 
 void Roof::draw(void)
 {
-	glPushMatrix();
+	/*glPushMatrix();
 	glTranslatef(position.x, position.y, position.z);
 	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
 	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
 	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
-	glScalef(size, size, size);
+	glScalef(size, size, size);*/
 
     //glBegin(GL_QUADS);
 
@@ -138,7 +174,15 @@ void Roof::draw(void)
 
     //glEnd();
     //glPopMatrix();
-    this->drawCylinder();
-    this->drawBaseRoof();
+    for (int i = 1; i <= 8; i++) {
+        glPushMatrix();
+        glTranslatef((float)(2 * i - 9), 0.0f, 0.0f);
+        this->drawCylinder();
+        this->drawBaseRoof();
+        glPopMatrix();
+    }
+
+   /* this->drawCylinder();
+    this->drawBaseRoof();*/
     
 }
