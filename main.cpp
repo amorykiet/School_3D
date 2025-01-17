@@ -92,6 +92,27 @@ void setFlagPillarMat() {
 }
 
 
+void setWoodMat() {
+	GLfloat objAmbient[] = { 0.26f, 0.16f, 0.05f, 1.0f };
+	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+}
+
+
+void setLeafMat() {
+	GLfloat objAmbient[] = { 0.26f, 0.41f, 0.18f, 1.0f };
+	GLfloat objDiffuse[] = { 0.2f, 0.4f, 0.2f, 1.0f };
+	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+}
+
 void loadAllTexture() {
 	logoTex = loadTexture("texture\\bklogo.png");
 	frontBuildingTex = loadTexture("texture\\front_building.png");
@@ -546,6 +567,41 @@ void drawGround(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 }
 
 
+void drawTree(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+	
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+	glScalef(size.x, size.y, size.z);
+
+	setWoodMat();
+
+	drawPillar(glm::vec3(0.0f, 0.0f, 0.0f), 0.15f, 1.5f);
+
+	setLeafMat();
+
+	glPushMatrix();
+	glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+	glTranslatef(0.0f, 0.0f, 0.0f);
+	glutSolidCone(radius, height, 32, 32);
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+	glTranslatef(0.0f, 0.0f, 1.0f);
+	glutSolidCone(radius, height, 32, 32);
+
+
+	setDefaultMat();
+
+	glPopMatrix();
+
+	glPopMatrix();
+}
+
+
 void renderScene(void) {
 
 	// Clear Color and Depth Buffers
@@ -567,7 +623,10 @@ void renderScene(void) {
 
 	drawSchool(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	drawGround(glm::vec3(0.0f, 0.5f, 0.0f));
-
+	drawTree(glm::vec3(5.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
+	drawTree(glm::vec3(8.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
+	drawTree(glm::vec3(-5.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
+	drawTree(glm::vec3(-8.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
 
 	//drawCube(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	// End of drawing ---------------------------------------------------
