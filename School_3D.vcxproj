@@ -159,6 +159,9 @@
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="texture\front_building.jpg" />
+    <Image Include="texture\front_face.png" />
+    <Image Include="texture\ground.jpg" />
     <Image Include="texture\logo.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

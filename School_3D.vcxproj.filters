@@ -58,5 +58,14 @@
     <Image Include="texture\logo.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="texture\front_building.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\front_face.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\ground.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
