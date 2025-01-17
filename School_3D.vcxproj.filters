@@ -18,41 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleBuilding.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Floor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FrontFace.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cube.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SampleBuilding.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Floor.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FrontFace.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\logo.png">
@@ -65,6 +33,33 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="texture\back.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\bklogo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\flag.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\front_building.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\skybox_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\skybox_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\skybox_front.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\skybox_left.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\skybox_right.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\skybox_up.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

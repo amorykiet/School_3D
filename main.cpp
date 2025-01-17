@@ -10,9 +10,6 @@
 #include<glm/gtx/rotate_vector.hpp>
 #include<glm/gtx/vector_angle.hpp>
 
-#include"Cube.h"
-#include"SampleBuilding.h"
-
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 800
 

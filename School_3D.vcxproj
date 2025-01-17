@@ -143,26 +143,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="Floor.cpp" />
-    <ClCompile Include="FrontFace.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SampleBuilding.cpp" />
     <ClCompile Include="stb.cpp" />
-    <ClCompile Include="Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="Floor.h" />
-    <ClInclude Include="FrontFace.h" />
-    <ClInclude Include="SampleBuilding.h" />
-    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\back.jpg" />
+    <Image Include="texture\bklogo.png" />
+    <Image Include="texture\flag.png" />
+    <Image Include="texture\front_building.png" />
     <Image Include="texture\front_face.png" />
     <Image Include="texture\ground.jpg" />
     <Image Include="texture\logo.png" />
+    <Image Include="texture\skybox_back.png" />
+    <Image Include="texture\skybox_down.png" />
+    <Image Include="texture\skybox_front.png" />
+    <Image Include="texture\skybox_left.png" />
+    <Image Include="texture\skybox_right.png" />
+    <Image Include="texture\skybox_up.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
