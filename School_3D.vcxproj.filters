@@ -67,5 +67,8 @@
     <Image Include="texture\ground.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="texture\back.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

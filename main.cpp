@@ -59,20 +59,48 @@ GLuint loadTexture(const char* filename) {
 	return textureID;
 }
 
-
+// Texture
 GLuint frontBuildingTex;
 GLuint logoTex;
 GLuint frontFaceTex;
 GLuint groundTex;
+GLuint backTex;
+GLuint roofTex;
+GLuint flagTex;
+
+//Mat
+
+void setDefaultMat() {
+	GLfloat objAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+}
+
+
+void setFlagPillarMat() {
+	GLfloat objAmbient[] = { 0.64f, 0.45f, 0.28f, 1.0f };
+	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+}
+
 
 void loadAllTexture() {
 	logoTex = loadTexture("texture\\bklogo.png");
 	frontBuildingTex = loadTexture("texture\\front_building.png");
 	frontFaceTex = loadTexture("texture\\front_face.png");
 	groundTex = loadTexture("texture\\ground.jpg");
+	backTex = loadTexture("texture\\back.png");
+	roofTex = loadTexture("texture\\roof.png");
+	flagTex = loadTexture("texture\\flag.png");
 }
-
-
 
 GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -119,13 +147,8 @@ void drawCube(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 s
 	glScalef(size.x, size.y, size.z);
 
 	// Set material
-	GLfloat objAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
-	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
 
-	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+	setDefaultMat();
 
 	
 	glBegin(GL_QUADS);
@@ -180,22 +203,12 @@ void drawCube(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 s
 
 void drawPillar(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
 
-
 	glPushMatrix();
 	glTranslatef(position.x, position.y, position.z);
 	glRotatef(rotation.x + 90.0f, 1.0f, 0.0f, 0.0f);
 	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
 	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
 	glScalef(size.x, size.y, size.z);
-
-	// Set material
-	GLfloat objAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
-	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-
-	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
 
 	GLUquadric* quad = gluNewQuadric();
 	gluCylinder(quad, radius, radius, height, 50, 50);
@@ -226,6 +239,36 @@ void drawSky() {
 }
 
 
+void drawRoof(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+	glScalef(size.x, size.y, size.z);
+
+	// Set material
+
+	setDefaultMat();
+
+
+	drawCube(glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec3(0), glm::vec3(9.2f, 0.1f, 0.5f));
+
+	for (glm::float32 i = 0; i < 10; i++)
+	{
+		drawPillar(glm::vec3(-5.0f + i, 0.5f, 0.0f), 0.05f, 0.5);
+	}
+
+
+
+	drawCube(glm::vec3(-6.25f, 0.0f, 0.0f), glm::vec3(0), glm::vec3(2.5f, 0.5f, 0.5f));
+	drawCube(glm::vec3(5.25f, 0.0f, 0.0f), glm::vec3(0), glm::vec3(2.5f, 0.5f, 0.5f));
+
+	glPopMatrix();
+}
+
+
 void drawSchool(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
 	
 	glPushMatrix();
@@ -236,13 +279,9 @@ void drawSchool(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 	glScalef(size.x, size.y, size.z);
 
 	// Set material
-	GLfloat objAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
-	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
 
-	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+	setDefaultMat();
+
 
 #pragma region Building
 
@@ -264,14 +303,15 @@ void drawSchool(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 
 	glEnd();
 
+	// Back face texture
 	glBindTexture(GL_TEXTURE_2D, frontBuildingTex);
 	glBegin(GL_QUADS);
 
 	glNormal3f(0.0f, 0.0f, 1.0f); // Normal pointing outwards
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f);
-	glTexCoord2f(20.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f);
-	glTexCoord2f(20.0f, 4.0f); glVertex3f(0.5f, 0.5f, 0.5f);
-	glTexCoord2f(0.0f, 4.0f); glVertex3f(-0.5f, 0.5f, 0.5f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.6f, -0.5f, -0.51f);
+	glTexCoord2f(22.0f, 0.0f); glVertex3f(0.6f, -0.5f, -0.51f);
+	glTexCoord2f(22.0f, 4.0f); glVertex3f(0.6f, 0.5f, -0.51f);
+	glTexCoord2f(0.0f, 4.0f); glVertex3f(-0.6f, 0.5f, -0.51f);
 
 	glEnd();
 
@@ -401,6 +441,8 @@ void drawSchool(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 
 #pragma region Side
 
+	setDefaultMat();
+
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, frontFaceTex);
 	glBegin(GL_QUADS);
@@ -438,7 +480,32 @@ void drawSchool(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 
 #pragma endregion
 
+#pragma region Roof
+	drawRoof(glm::vec3(0.0f, 2.0f, 0.0f));
+
+	setFlagPillarMat();
+	drawPillar(glm::vec3(0.0f, 5.0f, -0.5f), 0.025f, 5.0f);
+	
+	setDefaultMat();
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, flagTex);
+	glBegin(GL_QUADS);
+
+	// Front face
+	glNormal3f(0.0f, 0.0f, 1.0f); // Normal pointing outwards
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 4.5f, -0.5f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.6f, 4.5f, -0.5f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.6f, 4.9f, -0.5f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 4.9f, -0.5f);
+
+	glEnd();
 	glDisable(GL_TEXTURE_2D);
+
+#pragma endregion
+
+
+	glDisable(GL_TEXTURE_2D);
+
 	glPopMatrix();
 }
 
@@ -453,13 +520,8 @@ void drawGround(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 	glScalef(size.x, size.y, size.z);
 
 	// Set material
-	GLfloat objAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
-	GLfloat objSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };
 
-	glMaterialfv(GL_FRONT, GL_AMBIENT, objAmbient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, objDiffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
+	setDefaultMat();
 
 
 	glEnable(GL_TEXTURE_2D);
@@ -484,7 +546,6 @@ void drawGround(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 }
 
 
-
 void renderScene(void) {
 
 	// Clear Color and Depth Buffers
@@ -505,7 +566,9 @@ void renderScene(void) {
 
 
 	drawSchool(glm::vec3(0), glm::vec3(0), glm::vec3(1));
-	drawGround(glm::vec3(0));
+	drawGround(glm::vec3(0.0f, 0.5f, 0.0f));
+
+
 	//drawCube(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	// End of drawing ---------------------------------------------------
 
