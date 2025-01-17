@@ -71,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include</IncludePath>
+    <IncludePath>$(SolutionDir)\Libraries\include;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include</IncludePath>
+    <IncludePath>$(SolutionDir)\Libraries\include;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Learning Project\Computer Graphic\Cuối kì\School_3D\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
