@@ -64,9 +64,9 @@ GLuint frontBuildingTex;
 GLuint logoTex;
 GLuint frontFaceTex;
 GLuint groundTex;
-GLuint backTex;
-GLuint roofTex;
 GLuint flagTex;
+
+GLuint skyboxTextures[6];
 
 //Mat
 
@@ -113,14 +113,22 @@ void setLeafMat() {
 	glMaterialfv(GL_FRONT, GL_SPECULAR, objSpecular);
 }
 
+
 void loadAllTexture() {
 	logoTex = loadTexture("texture\\bklogo.png");
 	frontBuildingTex = loadTexture("texture\\front_building.png");
 	frontFaceTex = loadTexture("texture\\front_face.png");
 	groundTex = loadTexture("texture\\ground.jpg");
-	backTex = loadTexture("texture\\back.png");
-	roofTex = loadTexture("texture\\roof.png");
 	flagTex = loadTexture("texture\\flag.png");
+
+	//Skybox
+	skyboxTextures[0] = loadTexture("texture\\skybox_right.png");
+	skyboxTextures[1] = loadTexture("texture\\skybox_left.png");
+	skyboxTextures[2] = loadTexture("texture\\skybox_up.png");
+	skyboxTextures[3] = loadTexture("texture\\skybox_down.png");
+	skyboxTextures[4] = loadTexture("texture\\skybox_front.png");
+	skyboxTextures[5] = loadTexture("texture\\skybox_back.png");
+
 }
 
 GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
@@ -257,6 +265,92 @@ void drawSky() {
 	gluSphere(skySphere, 60.0f, 50, 50); // Radius of 50
 	gluDeleteQuadric(skySphere);
 	glPopMatrix();
+
+}
+
+
+void drawSkybox() {
+
+	glPushMatrix();
+
+	glDisable(GL_DEPTH_TEST);
+	GLfloat size = 50;
+
+	// Set material for the sky
+	GLfloat skyAmbient[] = { 0.8f, 0.8f, 1.0f, 1.0f };
+	GLfloat skyDiffuse[] = { 0.5f, 0.5f, 1.0f, 1.0f };
+	GLfloat skySpecular[] = { 0.1f, 0.1f, 0.2f, 1.0f };
+	//GLfloat shininess = 5.0f; // Low shininess for a soft sky look
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, skyAmbient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, skyDiffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, skySpecular);
+	//glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+
+	glEnable(GL_TEXTURE_2D);
+
+	// Right Face
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[0]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(size, -size, -size);
+	glTexCoord2f(1, 0); glVertex3f(size, -size, size);
+	glTexCoord2f(1, 1); glVertex3f(size, size, size);
+	glTexCoord2f(0, 1); glVertex3f(size, size, -size);
+	glEnd();
+
+	// Left Face
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[1]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-size, -size, size);
+	glTexCoord2f(1, 0); glVertex3f(-size, -size, -size);
+	glTexCoord2f(1, 1); glVertex3f(-size, size, -size);
+	glTexCoord2f(0, 1); glVertex3f(-size, size, size);
+	glEnd();
+
+
+	// Up Face
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[2]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-size, size, -size);
+	glTexCoord2f(1, 0); glVertex3f(size, size, -size);
+	glTexCoord2f(1, 1); glVertex3f(size, size, size);
+	glTexCoord2f(0, 1); glVertex3f(-size, size, size);
+	glEnd();
+
+	// Down Face
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[3]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-size, -size, size);
+	glTexCoord2f(1, 0); glVertex3f(size, -size, size);
+	glTexCoord2f(1, 1); glVertex3f(size, -size, -size);
+	glTexCoord2f(0, 1); glVertex3f(-size, -size, -size);
+	glEnd();
+
+
+	// Front Face
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[4]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-size, -size, -size);
+	glTexCoord2f(1, 0); glVertex3f(size, -size, -size);
+	glTexCoord2f(1, 1); glVertex3f(size, size, -size);
+	glTexCoord2f(0, 1); glVertex3f(-size, size, -size);
+	glEnd();
+
+	// Back Face
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[5]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(size, -size, size);
+	glTexCoord2f(1, 0); glVertex3f(-size, -size, size);
+	glTexCoord2f(1, 1); glVertex3f(-size, size, size);
+	glTexCoord2f(0, 1); glVertex3f(size, size, size);
+	glEnd();
+
+
+	glDisable(GL_TEXTURE_2D);
+
+	glPopMatrix();
+	glEnable(GL_DEPTH_TEST);
+
 }
 
 
@@ -524,9 +618,6 @@ void drawSchool(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 
 #pragma endregion
 
-
-	glDisable(GL_TEXTURE_2D);
-
 	glPopMatrix();
 }
 
@@ -607,22 +698,28 @@ void renderScene(void) {
 	// Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	gluPerspective(45.0f, 1.0f, 0.1f, 100.0f);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45.0f, 1.0f, 0.1f, 200.0f);
+	glMatrixMode(GL_MODELVIEW);
+
 	glLoadIdentity();
 	gluLookAt(cameraPosition.x, cameraPosition.y, cameraPosition.z,
 		cameraPosition.x + cameraOrientation.x, cameraPosition.y + cameraOrientation.y, cameraPosition.z + cameraOrientation.z,
 		cameraUp.x, cameraUp.y, cameraUp.z);
 	
 
-	GLfloat light_position[] = { 50.0f, 50.0f, 50.0f, 1.0f }; // Point light
+	GLfloat light_position[] = { 40.0f, 40.0f, 40.0f, 1.0f }; // Point light
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	drawSky();
+	//drawSky();
+	drawSkybox();
 
 	//Draw thing -------------------------------------------------------
 
 
-	drawSchool(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	drawGround(glm::vec3(0.0f, 0.5f, 0.0f));
+	drawSchool(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	drawTree(glm::vec3(5.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
 	drawTree(glm::vec3(8.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
 	drawTree(glm::vec3(-5.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
@@ -747,7 +844,8 @@ int main(int argc, char** argv) {
 	glutSetCursor(GLUT_CURSOR_NONE);
 	
 	loadAllTexture();
-	
+
+
 	initLighting();
 
 	// Enable normalization of normals

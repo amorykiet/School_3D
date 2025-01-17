@@ -160,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\back.jpg" />
-    <Image Include="texture\front_building.jpg" />
     <Image Include="texture\front_face.png" />
     <Image Include="texture\ground.jpg" />
     <Image Include="texture\logo.png" />
