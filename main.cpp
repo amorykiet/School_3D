@@ -15,7 +15,7 @@
 
 using namespace std;
 // Camera variables
-glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 5.0f);
+glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 10.0f);
 glm::vec3 cameraOrientation = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
@@ -62,6 +62,7 @@ GLuint logoTex;
 GLuint frontFaceTex;
 GLuint groundTex;
 GLuint flagTex;
+GLuint grassTex;
 
 GLuint skyboxTextures[6];
 
@@ -117,6 +118,8 @@ void loadAllTexture() {
 	frontFaceTex = loadTexture("texture\\front_face.png");
 	groundTex = loadTexture("texture\\ground.jpg");
 	flagTex = loadTexture("texture\\flag.png");
+	grassTex = loadTexture("texture\\grass.jpg");
+
 
 	//Skybox
 	skyboxTextures[0] = loadTexture("texture\\skybox_right.png");
@@ -174,7 +177,7 @@ void drawCube(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 s
 
 	// Set material
 
-	setDefaultMat();
+	//setDefaultMat();
 
 	
 	glBegin(GL_QUADS);
@@ -634,16 +637,71 @@ void drawGround(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 
 
 	glEnable(GL_TEXTURE_2D);
+
+	// Floor
 	glBindTexture(GL_TEXTURE_2D, groundTex);
 	glBegin(GL_QUADS);
 
 	glNormal3f(0.0f, 1.0f, 0.0f); // Normal pointing outwards
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-25.0f, -2.5f, -25.0f);
-	glTexCoord2f(25.0f, 0.0f); glVertex3f(25.0f, -2.5f, -25.0f);
-	glTexCoord2f(25.0f, 25.0f); glVertex3f(25.0f, -2.5f, 25.0f);
-	glTexCoord2f(0.0f, 25.0f); glVertex3f(-25.0f, -2.5f, 25.0f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-25.0f, -2.5f, -20.0f);
+	glTexCoord2f(25.0f, 0.0f); glVertex3f(25.0f, -2.5f, -20.0f);
+	glTexCoord2f(25.0f, 25.0f); glVertex3f(25.0f, -2.5f, 30.0f);
+	glTexCoord2f(0.0f, 25.0f); glVertex3f(-25.0f, -2.5f, 30.0f);
 
 	glEnd();
+
+	// Grass
+
+	glBindTexture(GL_TEXTURE_2D, grassTex);
+	glBegin(GL_QUADS);
+
+	glNormal3f(0.0f, 1.0f, 0.0f); // Normal pointing outwards
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-10.0f, -2.49f, 0.0f);
+	glTexCoord2f(7.5f, 0.0f); glVertex3f(-2.5f, -2.49f, 0.0f);
+	glTexCoord2f(7.5f, 6.0f); glVertex3f(-2.5f, -2.49f, 6.0f);
+	glTexCoord2f(0.0f, 6.0f); glVertex3f(-10.0f, -2.49f, 6.0f);
+
+	glEnd();
+
+
+	glBindTexture(GL_TEXTURE_2D, grassTex);
+	glBegin(GL_QUADS);
+
+	glNormal3f(0.0f, 1.0f, 0.0f); // Normal pointing outwards
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(10.0f, -2.49f, 0.0f);
+	glTexCoord2f(7.5f, 0.0f); glVertex3f(2.5f, -2.49f, 0.0f);
+	glTexCoord2f(7.5f, 6.0f); glVertex3f(2.5f, -2.49f, 6.0f);
+	glTexCoord2f(0.0f, 6.0f); glVertex3f(10.0f, -2.49f, 6.0f);
+
+	glEnd();
+
+
+	glBindTexture(GL_TEXTURE_2D, grassTex);
+	glBegin(GL_QUADS);
+
+	glNormal3f(0.0f, 1.0f, 0.0f); // Normal pointing outwards
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-10.0f, -2.49f, 8.0f);
+	glTexCoord2f(7.5f, 0.0f); glVertex3f(-2.5f, -2.49f, 8.0f);
+	glTexCoord2f(7.5f, 6.0f); glVertex3f(-2.5f, -2.49f, 14.0f);
+	glTexCoord2f(0.0f, 6.0f); glVertex3f(-10.0f, -2.49f, 14.0f);
+
+	glEnd();
+
+
+	glBindTexture(GL_TEXTURE_2D, grassTex);
+	glBegin(GL_QUADS);
+
+	glNormal3f(0.0f, 1.0f, 0.0f); // Normal pointing outwards
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(10.0f, -2.49f, 8.0f);
+	glTexCoord2f(7.5f, 0.0f); glVertex3f(2.5f, -2.49f, 8.0f);
+	glTexCoord2f(7.5f, 6.0f); glVertex3f(2.5f, -2.49f, 14.0f);
+	glTexCoord2f(0.0f, 6.0f); glVertex3f(10.0f, -2.49f, 14.0f);
+
+	glEnd();
+
+
+
+
 	glDisable(GL_TEXTURE_2D);
 
 
@@ -655,7 +713,7 @@ void drawGround(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3
 }
 
 
-void drawTree(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+void drawBigTree(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
 	
 	glPushMatrix();
 	glTranslatef(position.x, position.y, position.z);
@@ -690,6 +748,153 @@ void drawTree(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 rota
 }
 
 
+void drawSmallTree(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+	glScalef(size.x, size.y, size.z);
+
+	setWoodMat();
+
+	drawPillar(glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, 1.5f);
+
+	setLeafMat();
+
+	glPushMatrix();
+	glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+	glTranslatef(0.0f, 0.0f, 0.0f);
+	glutSolidCone(radius, height, 32, 32);
+	glPopMatrix();
+
+	setDefaultMat();
+
+	glPopMatrix();
+}
+
+
+void drawBush(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+	glScalef(size.x, size.y, size.z);
+
+	setLeafMat();
+
+
+
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 0.0f); // Centered at origin
+	GLUquadric* bushSphere = gluNewQuadric();
+	gluSphere(bushSphere, 1.0f, 25, 25);
+	gluDeleteQuadric(bushSphere);
+	glPopMatrix();
+
+	setDefaultMat();
+
+	glPopMatrix();
+}
+
+
+void drawBoxBush(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+	glScalef(size.x, size.y, size.z);
+
+	// Set material
+
+	setLeafMat();
+
+
+	glBegin(GL_QUADS);
+
+	// Front face
+	glNormal3f(0.0f, 0.0f, 1.0f); // Normal pointing outwards
+	glVertex3f(-0.5f, -0.5f, 0.5f);
+	glVertex3f(0.5f, -0.5f, 0.5f);
+	glVertex3f(0.5f, 0.5f, 0.5f);
+	glVertex3f(-0.5f, 0.5f, 0.5f);
+
+	// Back face
+	glNormal3f(0.0f, 0.0f, -1.0f);
+	glVertex3f(-0.5f, -0.5f, -0.5f);
+	glVertex3f(-0.5f, 0.5f, -0.5f);
+	glVertex3f(0.5f, 0.5f, -0.5f);
+	glVertex3f(0.5f, -0.5f, -0.5f);
+
+	// Left face
+	glNormal3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(-0.5f, -0.5f, -0.5f);
+	glVertex3f(-0.5f, -0.5f, 0.5f);
+	glVertex3f(-0.5f, 0.5f, 0.5f);
+	glVertex3f(-0.5f, 0.5f, -0.5f);
+
+	// Right face
+	glNormal3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.5f, -0.5f, -0.5f);
+	glVertex3f(0.5f, 0.5f, -0.5f);
+	glVertex3f(0.5f, 0.5f, 0.5f);
+	glVertex3f(0.5f, -0.5f, 0.5f);
+
+	// Top face
+	glNormal3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(-0.5f, 0.5f, -0.5f);
+	glVertex3f(-0.5f, 0.5f, 0.5f);
+	glVertex3f(0.5f, 0.5f, 0.5f);
+	glVertex3f(0.5f, 0.5f, -0.5f);
+
+	// Bottom face
+	glNormal3f(0.0f, -1.0f, 0.0f);
+	glVertex3f(-0.5f, -0.5f, -0.5f);
+	glVertex3f(0.5f, -0.5f, -0.5f);
+	glVertex3f(0.5f, -0.5f, 0.5f);
+	glVertex3f(-0.5f, -0.5f, 0.5f);
+
+	glEnd();
+
+
+	setDefaultMat();
+
+	glPopMatrix();
+}
+
+
+void drawChair(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 size = glm::vec3(1)) {
+
+	size = size * 0.3f;
+
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	glRotatef(rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation.z, 0.0f, 0.0f, 1.0f);
+	glScalef(size.x, size.y, size.z);
+
+	setWoodMat();
+
+	drawCube(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f, 0.2f, 1.0f));
+	drawCube(glm::vec3(0.0f, 0.35f, 0.75f), glm::vec3(-45.0f, 0.0f, 0.0f), glm::vec3(2.0f, 0.2f, 1.0f));
+
+	drawPillar(glm::vec3(0.55f, 0.0f, 0.4f), 0.1f, 0.5f);
+	drawPillar(glm::vec3(0.55f, 0.0f, -0.4f), 0.1f, 0.5f);
+	drawPillar(glm::vec3(-0.55f, 0.0f, 0.4f), 0.1f, 0.5f);
+	drawPillar(glm::vec3(-0.55f, 0.0f, -0.4f), 0.1f, 0.5f);
+
+	setDefaultMat();
+	glPopMatrix();
+
+}
+
+
 void renderScene(void) {
 
 	// Clear Color and Depth Buffers
@@ -717,10 +922,56 @@ void renderScene(void) {
 
 	drawGround(glm::vec3(0.0f, 0.5f, 0.0f));
 	drawSchool(glm::vec3(0), glm::vec3(0), glm::vec3(1));
-	drawTree(glm::vec3(5.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
-	drawTree(glm::vec3(8.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
-	drawTree(glm::vec3(-5.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
-	drawTree(glm::vec3(-8.0f, -1.5f, 3.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(0.5));
+
+
+	drawBoxBush(glm::vec3(1.5f, -1.8f, 2.2f), glm::vec3(0.0f), glm::vec3(1.0f, 0.2f, 0.2f));
+	drawBoxBush(glm::vec3(-6.2f, -1.8f, 1.3f), glm::vec3(0.0f), glm::vec3(8.0f, 0.2f, 0.2f));
+	drawBoxBush(glm::vec3(6.2f, -1.8f, 1.3f), glm::vec3(0.0f), glm::vec3(8.0f, 0.2f, 0.2f));
+
+	drawSmallTree(glm::vec3(4.0f, -1.5f, 3.0f), 0.5f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawSmallTree(glm::vec3(6.0f, -1.5f, 3.0f), 0.5f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawSmallTree(glm::vec3(8.0f, -1.5f, 3.0f), 0.5f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawSmallTree(glm::vec3(-4.0f, -1.5f, 3.0f), 0.5f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawSmallTree(glm::vec3(-6.0f, -1.5f, 3.0f), 0.5f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawSmallTree(glm::vec3(-8.0f, -1.5f, 3.0f), 0.5f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+
+	drawBigTree(glm::vec3(4.5f, -1.5f, 5.0f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(4.5f, -1.85f, 3.5f), glm::vec3(0.0f), glm::vec3(1.0));
+
+	drawBigTree(glm::vec3(-4.5f, -1.5f, 5.0f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(-4.5f, -1.85f, 3.5f), glm::vec3(0.0f), glm::vec3(1.0));
+
+
+	drawBush(glm::vec3(-7.5f, -1.5f, 5.0f), glm::vec3(0.0f), glm::vec3(0.8));
+	drawBush(glm::vec3(7.5f, -1.5f, 5.0f), glm::vec3(0.0f), glm::vec3(0.8));
+
+
+	drawChair(glm::vec3(-3.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(-4.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(-5.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(-6.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+
+
+
+	drawChair(glm::vec3(3.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(4.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(5.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+	drawChair(glm::vec3(6.5f, -1.85f, 7.8f), glm::vec3(0.0f), glm::vec3(1.0));
+
+
+
+	drawBigTree(glm::vec3(7.5f, -1.5f, 10.0f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawBush(glm::vec3(4.5f, -1.5f, 12.5f), glm::vec3(0.0f), glm::vec3(0.5, 1.5f, 0.5f));
+	drawBush(glm::vec3(4.0f, -1.5f, 10.0f), glm::vec3(0.0f), glm::vec3(1.2, 1.0f, 1.2f));
+
+	drawBigTree(glm::vec3(-7.5f, -1.5f, 12.5f), 1.0f, 2.0f, glm::vec3(0.0f), glm::vec3(1.0));
+	drawBush(glm::vec3(-4.5f, -1.5f, 10.0f), glm::vec3(0.0f), glm::vec3(0.5f, 1.5f, 0.5f));
+	drawBush(glm::vec3(-7.5f, -1.5f, 10.0f), glm::vec3(0.0f), glm::vec3(1.2, 1.0f, 1.2f));
+
+
+
+
+
 
 	//drawCube(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	// End of drawing ---------------------------------------------------
