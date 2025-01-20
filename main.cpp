@@ -66,8 +66,7 @@ GLuint grassTex;
 
 GLuint skyboxTextures[6];
 
-//Mat
-
+//Material
 void setDefaultMat() {
 	GLfloat objAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 	GLfloat objDiffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
@@ -134,6 +133,7 @@ void loadAllTexture() {
 GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat light_ambient[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+GLfloat light_position[] = { 40.0f, 40.0f, 40.0f, 1.0f };
 
 void initLighting() {
 
@@ -245,7 +245,7 @@ void drawPillar(glm::vec3 position, GLfloat radius, GLfloat height, glm::vec3 ro
 	glPopMatrix();
 }
 
-
+// Unused
 void drawSky() {
 	// Set material for the sky
 	GLfloat skyAmbient[] = { 0.8f, 0.8f, 1.0f, 1.0f };
@@ -347,9 +347,9 @@ void drawSkybox() {
 
 
 	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
 
 	glPopMatrix();
-	glEnable(GL_DEPTH_TEST);
 
 }
 
@@ -786,8 +786,6 @@ void drawBush(glm::vec3 position, glm::vec3 rotation = glm::vec3(0), glm::vec3 s
 
 	setLeafMat();
 
-
-
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, 0.0f); // Centered at origin
 	GLUquadric* bushSphere = gluNewQuadric();
@@ -912,8 +910,8 @@ void renderScene(void) {
 		cameraUp.x, cameraUp.y, cameraUp.z);
 	
 
-	GLfloat light_position[] = { 40.0f, 40.0f, 40.0f, 1.0f }; // Point light
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
 	//drawSky();
 	drawSkybox();
 
@@ -969,10 +967,6 @@ void renderScene(void) {
 	drawBush(glm::vec3(-7.5f, -1.5f, 10.0f), glm::vec3(0.0f), glm::vec3(1.2, 1.0f, 1.2f));
 
 
-
-
-
-
 	//drawCube(glm::vec3(0), glm::vec3(0), glm::vec3(1));
 	// End of drawing ---------------------------------------------------
 
@@ -983,16 +977,16 @@ void renderScene(void) {
 void processSpecialKeys(int key, int xx, int yy) {
 	switch (key) {
 	case GLUT_KEY_UP:
-		cameraPosition += movementSpeed * cameraOrientation;
+		light_position[2] = std::max(-40.0f, light_position[2] - 1.0f);
 		break;
 	case GLUT_KEY_DOWN:
-		cameraPosition -= movementSpeed * cameraOrientation;
+		light_position[2] = std::min(40.0f, light_position[2] + 1.0f);
 		break;
 	case GLUT_KEY_LEFT:
-		cameraPosition -= glm::normalize(glm::cross(cameraOrientation, cameraUp)) * movementSpeed;
+		light_position[0] = std::max(-40.0f, light_position[0] - 1.0f);
 		break;
 	case GLUT_KEY_RIGHT:
-		cameraPosition += glm::normalize(glm::cross(cameraOrientation, cameraUp)) * movementSpeed;
+		light_position[0] = std::min(40.0f, light_position[0] + 1.0f);
 		break;
 	}
 
@@ -1092,8 +1086,6 @@ int main(int argc, char** argv) {
 	glutSetCursor(GLUT_CURSOR_NONE);
 	
 	loadAllTexture();
-
-
 	initLighting();
 
 	// Enable normalization of normals
